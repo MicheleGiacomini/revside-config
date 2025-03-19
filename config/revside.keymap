@@ -5,10 +5,13 @@
  */
 
 #define DEFT 0
-#define NUMB 1
-#define MOVE 2
-#define SYMB 3
-#define FUNC 4
+#define MACL 1 // Mac default layer
+#define NUMB 2
+#define MOVE 3
+#define MACM 4 // Mac movement layer
+#define SYMB 5
+#define FUNC 6
+#define MACF 7 // Mac funcion layer
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -50,8 +53,19 @@
 			bindings = <
         &kp TAB   &kp Q &kp W &kp E    &kp R     &kp T                                                          &kp Y   &kp U     &kp I     &kp O   &kp P    &kp NUBS
         &kp ESC   &kp A &kp S &kp D    &kp F     &kp G                                                          &kp H   &kp J     &kp K     &kp L   &kp SEMI &kp SQT
-        &kp LSHFT &kp Z &kp X &kp C    &kp V     &kp B      &af2                               &none          &kp N   &kp M     &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-	                                   &kp LCTRL &lt NUMB DEL &lt MOVE BSPC &mt LALT    &kp RGUI &lt SYMB SPACE &lt FUNC RET &kp RCTRL
+        &kp LSHFT &kp Z &kp X &kp C    &kp V     &kp B        &af2                               &none          &kp N   &kp M     &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                                       &kp LCTRL &lt NUMB DEL &lt MOVE BSPC &mt LALT    &kp RGUI &lt SYMB SPACE &lt FUNC RET &kp RCTRL
+			>;
+
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+		};
+
+		mac_layer {
+			bindings = <
+        &kp TAB   &kp Q &kp W &kp E    &kp R     &kp T                                                          &kp Y   &kp U     &kp I     &kp O   &kp P    &kp NUBS
+        &kp ESC   &kp A &kp S &kp D    &kp F     &kp G                                                          &kp H   &kp J     &kp K     &kp L   &kp SEMI &kp SQT
+        &kp LSHFT &kp Z &kp X &kp C    &kp V     &kp B       &af2                                &none          &kp N   &kp M     &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                                       &kp LGUI &lt NUMB DEL &lt MACM BSPC &mt LCTRL    &kp LALT &lt SYMB SPACE &lt MACF RET &kp RCTRL
 			>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -68,19 +82,29 @@
 		};
         movement_layer {
 			bindings = <
-        &trans &none    &none     &none    &none     &none                                         &kp LC(X) &kp LC(C) &kp LC(V) &kp LC(Z) &kp LC(LS(Z)) &none
-        &trans &kp LGUI &kp LCTRL &kp LALT &kp LSHFT &kp RET                                       &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &kp LC(A)     &none
-        &none  &none    &none     &none    &kp TAB   &none  &none                      &caps_word  &kp HOME  &kp PG_DN &kp PG_UP &kp END   &kp INS       &none
-	                                       &trans    &trans &trans &trans       &trans &kp TAB     &kp RET   &trans
+        &trans &none    &none     &none    &none     &none                                              &kp LC(X) &kp LC(C) &kp LC(V) &kp LC(Z) &kp LC(LS(Z)) &none
+        &trans &kp LGUI &kp LCTRL &kp LALT &kp LSHFT &kp RET                                            &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &kp LC(A)     &none
+        &none  &none    &none     &none    &kp TAB   &none  &none                            &caps_word &kp HOME  &kp PG_DN &kp PG_UP &kp END   &kp INS       &none
+                                           &trans    &trans &trans &trans     &trans &kp TAB &kp RET    &trans
+			>;
+
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+		};
+        mac_movement {
+			bindings = <
+        &trans &none    &none     &none    &none     &none                                                &kp LG(X) &kp LG(C) &kp LG(V) &kp LG(Z) &kp LG(LS(Z)) &none
+        &trans &kp LGUI &kp LCTRL &kp LALT &kp LSHFT &kp RET                                              &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &kp LG(A)     &none
+        &none  &none    &none     &none    &kp TAB   &none  &none                              &caps_word &kp HOME  &kp PG_DN &kp PG_UP &kp END   &kp INS       &none
+                                           &trans    &trans &trans &trans       &trans &kp TAB &kp RET    &trans
 			>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
         symbol_layer {
 			bindings = <
-        &trans   &kp AMPS  &kp GRAVE &kp LBRC &kp RBRC &kp LS(N2)                                    &none   &none     &kp RALT  &none     &none    &none
-        &kp FSLH &kp EQUAL &kp CARET &kp LPAR &kp RPAR &kp DLLR                                      &kp RET &kp LSHFT &kp LALT  &kp LCTRL &kp LGUI &none
-        &none    &kp NUHS  &kp PRCNT &kp LBKT &kp RBKT &kp MINUS &none                        &none  &none   &none     &none     &none     &none    &none
+        &trans   &kp AMPS  &kp GRAVE &kp LBRC &kp RBRC &kp LS(N2)                                  &none   &none     &kp RALT  &none     &none    &none
+        &kp FSLH &kp EQUAL &kp CARET &kp LPAR &kp RPAR &kp DLLR                                    &kp RET &kp LSHFT &kp LALT  &kp LCTRL &kp LGUI &none
+        &none    &kp NUHS  &kp PRCNT &kp LBKT &kp RBKT &kp MINUS &none                      &none  &none   &none     &none     &none     &none    &none
 	                                          &trans   &kp PLUS  &kp UNDER &kp STAR    &trans &trans &trans  &trans
 			>;
 
@@ -89,9 +113,19 @@
         function_layer {
 			bindings = <
         &trans &kp F9 &kp F10 &kp F11 &kp F12 &none                                     &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR
-        &trans &kp F5 &kp F6  &kp F7  &kp F8  &none                                     &kp RET       &kp LSHFT    &kp LALT     &kp LCTRL    &kp LGUI     &none
+        &trans &kp F5 &kp F6  &kp F7  &kp F8  &none                                     &kp RET       &kp LSHFT    &kp LALT     &kp LCTRL    &kp LGUI     &to MAC
         &none  &kp F1 &kp F2  &kp F3  &kp F4  &none  &bt BT_CLR                  &none  &none         &none        &none        &none        &none        &none
-	                                  &trans  &trans &trans     &trans    &trans &trans &trans        &trans
+	                                    &trans  &trans &trans     &trans    &trans &trans &trans        &trans
+			>;
+
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+		};
+        mac_function {
+			bindings = <
+        &trans &kp F9 &kp F10 &kp F11 &kp F12 &none                                     &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR
+        &trans &kp F5 &kp F6  &kp F7  &kp F8  &none                                     &kp RET       &kp LSHFT    &kp LALT     &kp LCTRL    &kp LGUI     &to DEFT
+        &none  &kp F1 &kp F2  &kp F3  &kp F4  &none  &bt BT_CLR                  &none  &none         &none        &none        &none        &none        &none
+	                                    &trans  &trans &trans     &trans    &trans &trans &trans        &trans
 			>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
