@@ -57,7 +57,6 @@
                                        &kp LCTRL &lt NUMB DEL &lt MOVE BSPC &mt LALT    &kp RGUI &lt SYMB SPACE &lt FUNC RET &kp RCTRL
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
 
 		mac_layer {
@@ -68,7 +67,6 @@
                                        &kp LGUI &lt NUMB DEL &lt MACM BSPC &mt LCTRL    &kp LALT &lt SYMB SPACE &lt MACF RET &kp RCTRL
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
         number_layer {
 			bindings = <
@@ -78,7 +76,6 @@
                                            &trans    &trans &trans &trans      &kp RET   &kp N0  &kp PLUS  &trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
         movement_layer {
 			bindings = <
@@ -88,7 +85,6 @@
                                            &trans    &trans &trans &trans     &trans &kp TAB &kp RET    &trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
         mac_movement {
 			bindings = <
@@ -98,7 +94,6 @@
                                            &trans    &trans &trans &trans       &trans &kp TAB &kp RET    &trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
         symbol_layer {
 			bindings = <
@@ -108,7 +103,6 @@
 	                                          &trans   &kp PLUS  &kp UNDER &kp STAR    &trans &trans &trans  &trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
         function_layer {
 			bindings = <
@@ -118,7 +112,6 @@
 	                                    &trans  &trans &trans     &trans    &trans &trans &trans        &trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
         mac_function {
 			bindings = <
@@ -128,7 +121,6 @@
 	                                    &trans  &trans &trans     &trans    &trans &trans &trans        &trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 		};
 	};
-};
+}
